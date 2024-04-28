@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
     <>
@@ -10,24 +12,14 @@ export default function Header() {
             <div className="hidden md:block">
               <ul className="flex items-center space-x-8">
                 <li>
-                  <a href="#" className="text-white">
-                    Home
-                  </a>
+                  <Link href="/" className="text-white">
+                    Dashboard
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-white">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-white">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-white">
-                    Contact
-                  </a>
+                  <Link href="/posts" className="text-white">
+                    Posts
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -51,36 +43,20 @@ export default function Header() {
           <div className="mobile-menu  md:hidden">
             <ul className="mt-4 space-y-4">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="block px-4 py-2 text-white bg-gray-900 rounded"
                 >
-                  Home
-                </a>
+                  Dashboard
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   className="block px-4 py-2 text-white bg-gray-900 rounded"
                 >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-white bg-gray-900 rounded"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-white bg-gray-900 rounded"
-                >
-                  Contact
-                </a>
+                  Posts
+                </Link>
               </li>
             </ul>
           </div>
