@@ -1,22 +1,17 @@
 import Link from "next/link";
 
-async function getPosts() {
-  const res = await fetch("http://127.0.0.1:8000/api/posts");
+import { PostsIndex } from '../../../src/app/actions';
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch posts");
-  }
+export default async function PostsIndexPage() {
 
-  return res.json();
-}
-
-export default async function Post() {
-  const posts = await getPosts();
+  const posts = await PostsIndex();
 
   return (
     <>
-      <h1 className="text-center text-2xl mt-6">Posts</h1>
+      <div className="flex items-center justify-between m-6 mb-0">
+        <h1 className="text-4xl">Posts</h1>
+        <Link href="/posts/create" className="text-blue-500 ml-4">Create new Post</Link>
+      </div>
       <div className="relative pt-2 lg:pt-2 min-h-screen">
         <div
           className="bg-cover w-full flex justify-center items-center"
