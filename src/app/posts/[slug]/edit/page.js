@@ -1,12 +1,17 @@
+import { PostsEdit, PostsUpdate } from '../../../../../src/app/actions';
 
-import { PostsStore } from '../../../../src/app/actions';
+export default async function PostsEditPage({ params }) {
 
-export default async function PostsCreatePage() {
+  const post = await PostsEdit(params.slug);
 
   return (
     <>
-      <h1 className="text-center text-2xl mt-6">Create a new Post</h1>
-      <form action={PostsStore} className="max-w-md mx-auto mt-10">
+      <h1 className="text-center text-2xl mt-6">Edit a Post</h1>
+      <form action={PostsUpdate} className="max-w-md mx-auto mt-10">
+        <input type='hidden' id="user_id" name="user_id" value={post.user_id} />
+        <input type='hidden' id="slug" name="slug" value={post.slug} />
+        <input type='hidden' id="id" name="id" value={post.id} />
+    
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
             Title
@@ -16,7 +21,7 @@ export default async function PostsCreatePage() {
             id="title"
             name="title"
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            placeholder="Enter title"
+            defaultValue={post.title}
             required
           />
         </div>
@@ -30,6 +35,7 @@ export default async function PostsCreatePage() {
             rows="5"
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             placeholder="Enter body"
+            defaultValue={post.body}
             required
           ></textarea>
         </div>

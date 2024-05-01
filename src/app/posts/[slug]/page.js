@@ -1,15 +1,7 @@
-async function getPost(slug) {
-  const res = await fetch("http://127.0.0.1:8000/api/posts/" + slug);
+import { PostsShow } from '../../../../src/app/actions';
 
-  if (!res.ok) {
-    throw new Error("Post not found.");
-  }
-
-  return res.json();
-}
-
-export default async function PostPage({ params }) {
-  const post = await getPost(params.slug);
+export default async function PostShowPage({ params }) {
+  const post = await PostsShow(params.slug);
 
   const postDate =
     new Date(post.created_at).getDate() +

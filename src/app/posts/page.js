@@ -22,11 +22,6 @@ export default async function PostsIndexPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-center px-2 mx-auto">
                 {posts.map((post) => (
                   <article className="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
-                    <Link
-                      target="_self"
-                      href={"/posts/" + post.slug}
-                      className="absolute opacity-0 top-0 right-0 left-0 bottom-0"
-                    ></Link>
                     <div className="relative mb-4 rounded-2xl">
                       <img
                         className="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105"
@@ -57,7 +52,7 @@ export default async function PostsIndexPage() {
                         target="_self"
                         rel="noopener noreferrer"
                       >
-                        Read article
+                        Read Post
                         <svg
                           className="ml-2 w-6 h-6"
                           fill="none"
@@ -129,7 +124,15 @@ export default async function PostsIndexPage() {
                         {post.title}
                       </Link>
                     </h3>
-                    <div></div>
+                    <hr className="w-3/4 mx-auto mt-4" />
+                    <div className="flex items-center justify-between mt-4 mx-6">
+                      <Link href={"/posts/" + post.slug + "/edit"} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Edit
+                      </Link>
+                      <Link href="#" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Delete
+                      </Link>
+                    </div>
                   </article>
                 ))}
               </div>
