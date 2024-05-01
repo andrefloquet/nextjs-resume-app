@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { PostsIndex } from '../../../src/app/actions';
+import { PostsIndex, PostsDestroy } from '../../../src/app/actions';
 
 export default async function PostsIndexPage() {
 
@@ -21,7 +21,7 @@ export default async function PostsIndexPage() {
             <div className="w-12/12 mx-auto rounded-2xl bg-white p-5 bg-opacity-40 backdrop-filter backdrop-blur-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-center px-2 mx-auto">
                 {posts.map((post) => (
-                  <article className="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                  <article key={post.id} className="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
                     <div className="relative mb-4 rounded-2xl">
                       <img
                         className="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105"
@@ -129,10 +129,13 @@ export default async function PostsIndexPage() {
                       <Link href={"/posts/" + post.slug + "/edit"} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Edit
                       </Link>
-                      <Link href="#" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                      <button form={"delete-form-"+post.id} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Delete
-                      </Link>
+                      </button>
                     </div>
+                    <form className="hidden" id={"delete-form-"+post.id} action={PostsDestroy}>
+                                <input type="hidden" name="slug" value={post.slug} />
+                    </form>
                   </article>
                 ))}
               </div>
